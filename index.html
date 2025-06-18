@@ -1,23 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Document</title>
-    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-</head>
-<body style="margin : 0px; overflow: hidden;">
-    <a-scene embedded arjs>
-        <a-assets>
+	<head>
+		<title>Document</title>
+		<script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+		<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+		<script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+	</head>
+	<body style="margin: 0px; overflow: hidden">
+		<a-scene
+			embedded
+			arjs
+			renderer="logarithmicDepthBuffer: true;"
+			vr-mode-ui="enabled: false"
+			gesture-detector
+			id="scene"
+		>
+			<a-assets>
 				<a-asset-item id="cidadeGLB" src="models/IC_cidade.glb"></a-asset-item>
-        </a-assets>
-      <a-marker preset="hiro">
-        <a-entity
-          position="0 0 0"
-          scale="0.1 0.1 0.1"
-          gltf-model="#cidadeGLB"
-        ></a-entity>
-      </a-marker>
-      <a-entity camera></a-entity>
-    </a-scene>
-  </body>
+			</a-assets>
+			<a-marker
+				preset="hiro"
+				raycaster="objects: .clickable"
+				emitevents="true"
+				cursor="fuse: false; rayOrigin: mouse;"
+				id="markerA"
+			>
+				<a-entity
+					position="0 0 0"
+					scale="0.1 0.1 0.1"
+					gltf-model="#cidadeGLB"
+					class="clickable"
+					gesture-handler
+				></a-entity>
+			</a-marker>
+			<a-entity camera></a-entity>
+		</a-scene>
+	</body>
 </html>
